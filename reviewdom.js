@@ -44,6 +44,26 @@ carDiv.appendChild(carLists);
 // 1.4 Crea dinamicamente en el html una lista de div que contenga un elemento 
 // h4 para el titulo y otro elemento img para la imagen.
 
+const images = [
+	{title: 'Random title', imgUrl: 'https://picsum.photos/300/200?random=1'}, 
+	{title: 'Random title', imgUrl: 'https://picsum.photos/300/200?random=2'},
+	{title: 'Random title', imgUrl: 'https://picsum.photos/300/200?random=3'},
+	{title: 'Random title', imgUrl: 'https://picsum.photos/300/200?random=4'},
+	{title: 'Random title', imgUrl: 'https://picsum.photos/300/200?random=5'}
+];
+
+let creDiv = document.createElement("div");
+creDiv.setAttribute = "picsum";
+
+for (let i of images) {
+	let h4$ = creDiv.appendChild(document.createElement("h4"));
+	h4$.innerHTML = i.title;
+	let img = creDiv.appendChild(document.createElement("img"));
+	img.src = i.imgUrl;
+}
+
+document.body.appendChild(creDiv);
+
 // 1.5 Basandote en el ejercicio anterior. Crea un botón que elimine el último 
 // elemento de la lista.
 
