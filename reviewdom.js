@@ -5,7 +5,7 @@ console.log('JS Review DOM');
 
 const countries = ['Japón', 'Nicaragua', 'Suiza', 'Australia', 'Venezuela'];
 
-// Creaamos el elemento "ul"
+// Creaamos el item "ul"
 const list = document.createElement('ul');
 // Creamos un contenedor "fragment"
 const fragment = document.createDocumentFragment();
@@ -19,7 +19,7 @@ for (const country of countries) {
 list.appendChild(fragment);
 document.body.appendChild(list);
 
-// 1.2 Elimina el elemento que tenga la clase .fn-remove-me.
+// 1.2 Elimina el item que tenga la clase .fn-remove-me.
 
 const remove = document.querySelector('.fn-remove-me');
 document.body.removeChild(remove);
@@ -41,8 +41,8 @@ for (const car of cars) {
 carLists.appendChild(carsFragment);
 carDiv.appendChild(carLists);
 
-// 1.4 Crea dinamicamente en el html una lista de div que contenga un elemento 
-// h4 para el titulo y otro elemento img para la imagen.
+// 1.4 Crea dinamicamente en el html una lista de div que contenga un item 
+// h4 para el titulo y otro item img para la imagen.
 
 const images = [
 	{title: 'Random title', imgUrl: 'https://picsum.photos/300/200?random=1'}, 
@@ -57,16 +57,43 @@ creDiv.setAttribute = "picsum";
 
 for (let i of images) {
 	let h4$ = creDiv.appendChild(document.createElement("h4"));
+	creDiv.className = "list"
 	h4$.innerHTML = i.title;
 	let img = creDiv.appendChild(document.createElement("img"));
-	img.src = i.imgUrl;
+	img.setAttribute('src', i.imgUrl)
 }
 
 document.body.appendChild(creDiv);
 
 // 1.5 Basandote en el ejercicio anterior. Crea un botón que elimine el último 
-// elemento de la lista.
+// item de la lista.
+
+let button = document.createElement('button')
+
+button.onclick = function(){
+    let allDiv = document.querySelectorAll(".list");
+    let arrDiv = Array.from(allDiv);
+    document.body.removeChild(arrDiv[arrDiv.length-1])
+}
+button.innerText='Click Here!'
+document.body.appendChild(button)
 
 // 1.6 Basandote en el ejercicio anterior. Crea un botón para cada uno de los 
-// elementos de las listas que elimine ese mismo elemento del html.
+// elementos de las listas que elimine ese mismo item del html.
 
+let lists = document.querySelectorAll('ul');
+let arrayLi = Array.from(lists);
+
+arrayLi.forEach(function(item){ 
+    let button2 = document.createElement('button')
+
+    button2.onclick = function(){
+        let allList = item.querySelectorAll('li');
+        let arrayLi = Array.from(allList);
+        console.log(arrayLi);
+        item.removeChild(arrayLi[arrayLi.length-1])
+    }
+    button2.innerText='Click here!'
+
+    item.appendChild(button2)
+})
